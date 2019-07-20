@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployeimmeubleCreateDlg" widgetVar="EmployeimmeubleCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEmployeimmeubleTitle}">
+            <h:form id="EmployeimmeubleCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employeimmeubleController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEmployeimmeubleLabel_employeimmeublePK_datedebut}" for="employeimmeublePK_datedebut" />
+                        <p:calendar id="employeimmeublePK_datedebut" pattern="MM/dd/yyyy" value="#{employeimmeubleController.selected.employeimmeublePK.datedebut}" title="#{bundle.EditEmployeimmeubleTitle_employeimmeublePK_datedebut}" required="true" requiredMessage="#{bundle.EditEmployeimmeubleRequiredMessage_employeimmeublePK_datedebut}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEmployeimmeubleLabel_datefin}" for="datefin" />
+                        <p:calendar id="datefin" pattern="MM/dd/yyyy" value="#{employeimmeubleController.selected.datefin}" title="#{bundle.EditEmployeimmeubleTitle_datefin}" required="true" requiredMessage="#{bundle.EditEmployeimmeubleRequiredMessage_datefin}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateEmployeimmeubleLabel_employe1}" for="employe1" />
+                        <p:selectOneMenu id="employe1" value="#{employeimmeubleController.selected.employe1}" required="true" requiredMessage="#{bundle.EditEmployeimmeubleRequiredMessage_employe1}">
+                            <f:selectItems value="#{employeController.itemsAvailableSelectOne}"
+                                           var="employe1Item"
+                                           itemValue="#{employe1Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateEmployeimmeubleLabel_immeuble1}" for="immeuble1" />
+                        <p:selectOneMenu id="immeuble1" value="#{employeimmeubleController.selected.immeuble1}" required="true" requiredMessage="#{bundle.EditEmployeimmeubleRequiredMessage_immeuble1}">
+                            <f:selectItems value="#{immeubleController.itemsAvailableSelectOne}"
+                                           var="immeuble1Item"
+                                           itemValue="#{immeuble1Item}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{employeimmeubleController.create}" value="#{bundle.Save}" update="display,:EmployeimmeubleListForm:datalist,:growl" oncomplete="handleSubmit(args,'EmployeimmeubleCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EmployeimmeubleCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

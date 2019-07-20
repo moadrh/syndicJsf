@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DepenseViewDlg" widgetVar="DepenseViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDepenseTitle}">
+            <h:form id="DepenseViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{depenseController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDepenseLabel_id}"/>
+                        <h:outputText value="#{depenseController.selected.id}" title="#{bundle.ViewDepenseTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDepenseLabel_montant}"/>
+                        <h:outputText value="#{depenseController.selected.montant}" title="#{bundle.ViewDepenseTitle_montant}"/>
+                        <h:outputText value="#{bundle.ViewDepenseLabel_date}"/>
+                        <h:outputText value="#{depenseController.selected.date}" title="#{bundle.ViewDepenseTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDepenseLabel_categorieId}"/>
+                        <h:outputText value="#{depenseController.selected.categorieId}" title="#{bundle.ViewDepenseTitle_categorieId}"/>
+                        <h:outputText value="#{bundle.ViewDepenseLabel_immeubleId}"/>
+                        <h:outputText value="#{depenseController.selected.immeubleId}" title="#{bundle.ViewDepenseTitle_immeubleId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DepenseViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

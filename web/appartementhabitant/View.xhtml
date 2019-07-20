@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppartementhabitantViewDlg" widgetVar="AppartementhabitantViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAppartementhabitantTitle}">
+            <h:form id="AppartementhabitantViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appartementhabitantController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAppartementhabitantLabel_appartementhabitantPK_datedebut}"/>
+                        <h:outputText value="#{appartementhabitantController.selected.appartementhabitantPK.datedebut}" title="#{bundle.ViewAppartementhabitantTitle_appartementhabitantPK_datedebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAppartementhabitantLabel_datefin}"/>
+                        <h:outputText value="#{appartementhabitantController.selected.datefin}" title="#{bundle.ViewAppartementhabitantTitle_datefin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewAppartementhabitantLabel_etat}"/>
+                        <h:outputText value="#{appartementhabitantController.selected.etat}" title="#{bundle.ViewAppartementhabitantTitle_etat}"/>
+                        <h:outputText value="#{bundle.ViewAppartementhabitantLabel_appartement1}"/>
+                        <h:outputText value="#{appartementhabitantController.selected.appartement1}" title="#{bundle.ViewAppartementhabitantTitle_appartement1}"/>
+                        <h:outputText value="#{bundle.ViewAppartementhabitantLabel_habitant1}"/>
+                        <h:outputText value="#{appartementhabitantController.selected.habitant1}" title="#{bundle.ViewAppartementhabitantTitle_habitant1}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AppartementhabitantViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

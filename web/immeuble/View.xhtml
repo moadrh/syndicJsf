@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImmeubleViewDlg" widgetVar="ImmeubleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewImmeubleTitle}">
+            <h:form id="ImmeubleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{immeubleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewImmeubleLabel_id}"/>
+                        <h:outputText value="#{immeubleController.selected.id}" title="#{bundle.ViewImmeubleTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewImmeubleLabel_num}"/>
+                        <h:outputText value="#{immeubleController.selected.num}" title="#{bundle.ViewImmeubleTitle_num}"/>
+                        <h:outputText value="#{bundle.ViewImmeubleLabel_nom}"/>
+                        <h:outputText value="#{immeubleController.selected.nom}" title="#{bundle.ViewImmeubleTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewImmeubleLabel_adresse}"/>
+                        <h:outputText value="#{immeubleController.selected.adresse}" title="#{bundle.ViewImmeubleTitle_adresse}"/>
+                    </p:panelGrid>
+                    <p:dataGrid id="appartements" var="ap" value="#{immeubleController.selected.appartementList}">
+                        <p:panel id="pn1" header="Appartement #{ap.num}" style="text-align: center ; margin-top: 20px;" >
+                            <p:panelGrid columns="2" style="width:100%;">
+                                <h:outputText value="Habitant :" />
+                                <h:outputText value="#{ap.appartementhabitantList[0].habitant1.nom}"/>
+
+                                <h:outputText value="Dimension :" />
+                                <h:outputText value="#{ap.dimension}" />
+
+                                <h:outputText value="Etage :" />
+                                <h:outputText value="#{ap.etageId.num}"/>
+
+                            </p:panelGrid>
+                        </p:panel>
+                        <p:draggable for="pn1" revert="true" handle=".ui-panel-titlebar" />
+                    </p:dataGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ImmeubleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputStylesheet library="css" name="jsfcrud.css"/>
+        <h:outputScript library="js" name="jsfcrud.js"/>
+    </h:head>
+
+    <h:body>
+
+        <p:growl id="growl" life="3000" />
+        <p:layoutUnit position="north" size="80">
+            <p:graphicImage library="img" name="images.jpg" height="70" width="140" />
+            <h:form style="float: right;top: 15px;">
+                <h:commandButton value="#{bundle.logout}"  action="#{loginController.logOut()}" style="background-color: greenyellow;width: 100px;height: 35px;border-radius: 20px" />
+
+                <h:panelGrid columns="2">
+
+                    <h:outputText value="changer la langue"  style="color: aqua;font-size: 25px"/>
+                    <h:selectOneMenu value="#{lng.currentLocale}" onchange="submit()">
+                        <f:selectItems value="#{lng.availableLocales}" itemValue="#{lng.availableLocales}" /> 
+
+                    </h:selectOneMenu>
+
+                </h:panelGrid>
+            </h:form>
+        </p:layoutUnit>
+        <p:layout fullPage="true">
+            <p:layoutUnit position="west" size="180" header="#{bundle.AppName}">
+                <h:form id="menuForm" >
+                    <p:menu>
+                        <p:menuitem value="#{bundle.Home}" outcome="/Acceuil" icon="ui-icon-home"/>
+                        <p:menuitem value="Appartement" outcome="/appartement/List.xhtml" />
+                        <p:menuitem value="Affectation d'habitant" outcome="/appartementhabitant/List.xhtml" />
+                        <p:menuitem value="Categorie" outcome="/categorie/List.xhtml" />
+                        <p:menuitem value="Depense" outcome="/depense/List.xhtml" />
+                        <p:menuitem value="Employe" outcome="/employe/List.xhtml" />
+                        <p:menuitem value="Affectation d'employe" outcome="/employeimmeuble/List.xhtml" />
+                        <p:menuitem value="Etage" outcome="/etage/List.xhtml" />
+                        <p:menuitem value="Habitant" outcome="/habitant/List.xhtml" />
+                        <p:menuitem value="Immeuble" outcome="/immeuble/List.xhtml" />
+                        <p:menuitem value="Periode" outcome="/periode/List.xhtml" />
+                        <p:menuitem value="Profil" outcome="/profil/List.xhtml" />
+                        <p:menuitem value="Revenue" outcome="/revenue/List.xhtml" />
+                    </p:menu>
+
+                </h:form>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="south" size="60">
+                <ui:insert name="footer"/>
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="body"/>
+            </p:layoutUnit>
+
+        </p:layout>
+
+    </h:body>
+
+</html>

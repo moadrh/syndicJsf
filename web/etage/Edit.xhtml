@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EtageEditDlg" widgetVar="EtageEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEtageTitle}">
+            <h:form id="EtageEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{etageController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEtageLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{etageController.selected.id}" title="#{bundle.EditEtageTitle_id}" required="true" requiredMessage="#{bundle.EditEtageRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditEtageLabel_num}" for="num" />
+                        <p:inputText id="num" value="#{etageController.selected.num}" title="#{bundle.EditEtageTitle_num}" required="true" requiredMessage="#{bundle.EditEtageRequiredMessage_num}"/>
+                        <p:outputLabel value="#{bundle.EditEtageLabel_immeubleId}" for="immeubleId" />
+                        <p:selectOneMenu id="immeubleId" value="#{etageController.selected.immeubleId}" required="true" requiredMessage="#{bundle.EditEtageRequiredMessage_immeubleId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{immeubleController.itemsAvailableSelectOne}"
+                                           var="immeubleIdItem"
+                                           itemValue="#{immeubleIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{etageController.update}" value="#{bundle.Save}" update="display,:EtageListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EtageEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EtageEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppartementhabitantCreateDlg" widgetVar="AppartementhabitantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAppartementhabitantTitle}">
+            <h:form id="AppartementhabitantCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appartementhabitantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAppartementhabitantLabel_appartementhabitantPK_datedebut}" for="appartementhabitantPK_datedebut" />
+                        <p:calendar id="appartementhabitantPK_datedebut" pattern="MM/dd/yyyy" value="#{appartementhabitantController.selected.appartementhabitantPK.datedebut}" title="#{bundle.EditAppartementhabitantTitle_appartementhabitantPK_datedebut}" required="true" requiredMessage="#{bundle.EditAppartementhabitantRequiredMessage_appartementhabitantPK_datedebut}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAppartementhabitantLabel_datefin}" for="datefin" />
+                        <p:calendar id="datefin" pattern="MM/dd/yyyy" value="#{appartementhabitantController.selected.datefin}" title="#{bundle.EditAppartementhabitantTitle_datefin}" required="true" requiredMessage="#{bundle.EditAppartementhabitantRequiredMessage_datefin}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateAppartementhabitantLabel_etat}" for="etat" />
+                        <p:inputText id="etat" value="#{appartementhabitantController.selected.etat}" title="#{bundle.CreateAppartementhabitantTitle_etat}" required="true" requiredMessage="#{bundle.CreateAppartementhabitantRequiredMessage_etat}"/>
+                        <p:outputLabel value="Immeuble" for="immeubleId" />
+                        <p:selectOneMenu id="immeubleId" value="#{immeubleController.selected}" required="true" requiredMessage="#{bundle.EditRevenueRequiredMessage_appartementId}">
+                            <f:selectItems value="#{immeubleController.itemsAvailableSelectOne}"
+                                           var="immeubleItem"
+                                           itemValue="#{immeubleItem}"/>
+                            <f:ajax event="change" render="appartement1"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAppartementhabitantLabel_appartement1}" for="appartement1" />
+                        <p:selectOneMenu id="appartement1" value="#{appartementhabitantController.selected.appartement1}" required="true" requiredMessage="#{bundle.EditAppartementhabitantRequiredMessage_appartement1}">
+                            <f:selectItems value="#{immeubleController.selected.appartementList}"
+                                           var="appartement1Item"
+                                           itemValue="#{appartement1Item}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAppartementhabitantLabel_habitant1}" for="habitant1" />
+                        <p:selectOneMenu id="habitant1" value="#{appartementhabitantController.selected.habitant1}" required="true" requiredMessage="#{bundle.EditAppartementhabitantRequiredMessage_habitant1}">
+                            <f:selectItems value="#{habitantController.itemsAvailableSelectOne}"
+                                           var="habitant1Item"
+                                           itemValue="#{habitant1Item}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appartementhabitantController.create}" value="#{bundle.Save}" update="display,:AppartementhabitantListForm:datalist,:growl" oncomplete="handleSubmit(args,'AppartementhabitantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AppartementhabitantCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

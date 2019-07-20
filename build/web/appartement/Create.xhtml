@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppartementCreateDlg" widgetVar="AppartementCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAppartementTitle}">
+            <h:form id="AppartementCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appartementController.selected != null}">
+
+                        <p:outputLabel value="#{bundle.CreateAppartementLabel_num}" for="num" />
+                        <p:inputText id="num" value="#{appartementController.selected.num}" title="#{bundle.CreateAppartementTitle_num}" required="true" requiredMessage="#{bundle.CreateAppartementRequiredMessage_num}"/>
+                        <p:outputLabel value="#{bundle.CreateAppartementLabel_dimension}" for="dimension" />
+                        <p:inputText id="dimension" value="#{appartementController.selected.dimension}" title="#{bundle.CreateAppartementTitle_dimension}" required="true" requiredMessage="#{bundle.CreateAppartementRequiredMessage_dimension}"/>
+                        <p:outputLabel value="#{bundle.CreateAppartementLabel_immeubleId}" for="immeubleId" />
+                        <p:selectOneMenu id="immeubleId" value="#{appartementController.selected.immeubleId}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_immeubleId}">
+                            <f:selectItems value="#{immeubleController.itemsAvailableSelectOne}"
+                                           var="immeubleIdItem"
+                                           itemValue="#{immeubleIdItem}"/>
+                            <f:ajax event="change" render="etageId"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateAppartementLabel_etageId}" for="etageId" />
+                        <p:selectOneMenu id="etageId" value="#{appartementController.selected.etageId}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_etageId}">
+                            <f:selectItems value="#{appartementController.selected.immeubleId.etageList}"
+                                           var="etageIdItem"
+                                           itemValue="#{etageIdItem}"/>
+
+                        </p:selectOneMenu>
+
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appartementController.create}" value="#{bundle.Save}" update="display,:AppartementListForm:datalist,:growl" oncomplete="handleSubmit(args,'AppartementCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AppartementCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

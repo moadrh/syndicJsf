@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RevenueViewDlg" widgetVar="RevenueViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewRevenueTitle}">
+            <h:form id="RevenueViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{revenueController.selected != null}">
+                        <h:outputText value="#{bundle.ViewRevenueLabel_id}"/>
+                        <h:outputText value="#{revenueController.selected.id}" title="#{bundle.ViewRevenueTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewRevenueLabel_montant}"/>
+                        <h:outputText value="#{revenueController.selected.montant}" title="#{bundle.ViewRevenueTitle_montant}"/>
+                        <h:outputText value="#{bundle.ViewRevenueLabel_date}"/>
+                        <h:outputText value="#{revenueController.selected.date}" title="#{bundle.ViewRevenueTitle_date}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewRevenueLabel_appartementId}"/>
+                        <h:outputText value="#{revenueController.selected.appartementId}" title="#{bundle.ViewRevenueTitle_appartementId}"/>
+                        <h:outputText value="#{bundle.ViewRevenueLabel_periodeId}"/>
+                        <h:outputText value="#{revenueController.selected.periodeId}" title="#{bundle.ViewRevenueTitle_periodeId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="RevenueViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

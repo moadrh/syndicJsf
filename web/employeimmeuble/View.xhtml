@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EmployeimmeubleViewDlg" widgetVar="EmployeimmeubleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEmployeimmeubleTitle}">
+            <h:form id="EmployeimmeubleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{employeimmeubleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEmployeimmeubleLabel_employeimmeublePK_datedebut}"/>
+                        <h:outputText value="#{employeimmeubleController.selected.employeimmeublePK.datedebut}" title="#{bundle.ViewEmployeimmeubleTitle_employeimmeublePK_datedebut}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmployeimmeubleLabel_datefin}"/>
+                        <h:outputText value="#{employeimmeubleController.selected.datefin}" title="#{bundle.ViewEmployeimmeubleTitle_datefin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEmployeimmeubleLabel_employe1}"/>
+                        <h:outputText value="#{employeimmeubleController.selected.employe1}" title="#{bundle.ViewEmployeimmeubleTitle_employe1}"/>
+                        <h:outputText value="#{bundle.ViewEmployeimmeubleLabel_immeuble1}"/>
+                        <h:outputText value="#{employeimmeubleController.selected.immeuble1}" title="#{bundle.ViewEmployeimmeubleTitle_immeuble1}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EmployeimmeubleViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

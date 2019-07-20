@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+
+    <ui:composition>
+
+        <p:dialog id="depenseParPeriode" widgetVar="revenueParPeriodeDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewImmeubleTitle}">
+            <h:form id="revenueParPeriodeForm">
+
+                <h:panelGroup id="display">
+                    <p:selectOneMenu id="annees" value="#{immeubleController.annee}" style="width:125px">
+                        <f:selectItems value="#{immeubleController.listeAnnees()}" var="anneeItem" itemValue="#{anneeItem}"/>
+                        <f:ajax event="change" render="immeuble" />
+                    </p:selectOneMenu>
+                    <p:panel id="pn1" header="" style="text-align: center ; margin-top: 20px;" >
+                        <f:facet name="header">
+                            <h:outputText value="Liste des revenues"/>
+                        </f:facet>
+                        <p:dataTable  id="immeuble" var="m" value="#{immeubleController.revenueByAppartement()}" >
+                            <p:column headerText="">
+                                <h:outputText value="Appartement #{m[0]}" />
+                            </p:column>
+
+                            <p:column headerText="Janvier" style="#{m[1]==null  ? 'background-color: red' : 'background-color: green'} " >
+                                <h:outputText value="#{m[1]==null  ? '-' : m[1]} " />
+                            </p:column>
+
+                            <p:column headerText="Février" style="#{m[2]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[2]==null  ? '-' : m[2]} " />
+                            </p:column>
+                            <p:column headerText="Mars" style="#{m[3]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[3]==null  ? '-' : m[3]}" />
+                            </p:column>
+                            <p:column headerText="Avril" style="#{m[4]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[4]==null  ? '-' : m[4]}" />
+                            </p:column>
+                            <p:column headerText="Mai" style="#{m[5]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[5]==null  ? '-' : m[5]}" />
+                            </p:column>
+                            <p:column headerText="Juin" style="#{m[6]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[6]==null  ? '-' : m[6]}" />
+                            </p:column>
+                            <p:column headerText="Juillet" style="#{m[7]==null  ? 'background-color: red' : 'background-color: green'} ">
+
+                                <h:outputText value="#{m[7]==null  ? '-' : m[7]}" />
+
+                            </p:column>
+                            <p:column headerText="Août" style="#{m[8]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[8]==null  ? '-' : m[8]}" />
+                            </p:column>
+                            <p:column headerText="Septembre" style="#{m[9]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[9]==null  ? '-' : m[9]}" />
+                            </p:column>
+                            <p:column headerText="Octobre" style="#{m[10]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[10]==null  ? '-' : m[10]}" />
+                            </p:column>
+                            <p:column headerText="Novembre" style="#{m[11]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[11]==null  ? '-' : m[11]}" />
+                            </p:column>
+                            <p:column headerText="Décembre" style="#{m[12]==null  ? 'background-color: red' : 'background-color: green'} ">
+                                <h:outputText value="#{m[12]==null  ? '-' : m[12]}" />
+                            </p:column>
+                            <p:column headerText="Total">
+                                <h:outputText value="#{m[13]==null  ? '0.0' : m[13]}"/>
+                            </p:column>
+
+                        </p:dataTable>
+
+
+                    </p:panel>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

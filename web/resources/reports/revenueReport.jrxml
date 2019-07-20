@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 7.2.1.final using JasperReports Library version 6.6.0  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="revenueReport" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="bfa817ee-9c6a-4e51-9713-28b83f3729ee">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<parameter name="immeuble" class="java.lang.String"/>
+	<parameter name="nom" class="java.lang.String"/>
+	<parameter name="prenom" class="java.lang.String"/>
+	<parameter name="appartement" class="java.lang.String"/>
+	<parameter name="date" class="java.lang.String"/>
+	<parameter name="periode" class="java.lang.String"/>
+	<parameter name="montant" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement x="180" y="0" width="200" height="40" uuid="f717e3d6-03d0-4b96-9cd3-8edb72d8c65c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Rapport des revenues]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="374" splitType="Stretch">
+			<frame>
+				<reportElement x="29" y="10" width="420" height="300" uuid="9738e5b2-3099-4da5-9d2f-fed9a4fb1671"/>
+				<box>
+					<pen lineWidth="0.5"/>
+				</box>
+				<staticText>
+					<reportElement x="141" y="10" width="76" height="19" uuid="32239f75-8673-45d2-a787-3645f7666175"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Immeuble :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="32" y="51" width="76" height="19" uuid="306318f4-c430-46cf-a134-3236bc40341a"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Nom :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="33" y="81" width="76" height="19" uuid="1293f87c-227c-43c3-bb7b-916290edd60e"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Prenom :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="34" y="112" width="76" height="19" uuid="826e356f-00e0-430d-af97-b61527b4f1aa"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Appartement :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="32" y="140" width="76" height="19" uuid="78caf5d1-34ec-4154-bb69-d30ee6a4865e"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Date :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="33" y="170" width="76" height="19" uuid="94916017-a823-4242-b4e1-3855074ba757"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Période :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="34" y="201" width="76" height="19" uuid="8de388b8-ce87-4ada-af85-27e999f14cf5"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Montant :]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="313" y="228" width="76" height="19" uuid="5cb61cc5-326b-4856-adaa-410353940183"/>
+					<textElement textAlignment="Center">
+						<font size="11" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Signature :]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="221" y="11" width="100" height="18" uuid="37703dbf-0335-4912-b316-56de8d1e3541"/>
+					<textFieldExpression><![CDATA[$P{immeuble}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="111" y="52" width="100" height="18" uuid="9c5488d4-6bac-4732-bccd-938c4edd4afb"/>
+					<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="112" y="82" width="100" height="18" uuid="4b26e6c4-8262-4ec0-964e-4c35821f94b6"/>
+					<textFieldExpression><![CDATA[$P{prenom}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="112" y="113" width="100" height="18" uuid="191a0da4-66a4-4598-a118-b810f024970e"/>
+					<textFieldExpression><![CDATA[$P{appartement}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="112" y="141" width="100" height="18" uuid="6769f8ff-19d6-420b-8a78-b73888ea7fb1"/>
+					<textFieldExpression><![CDATA[$P{date}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="113" y="171" width="100" height="18" uuid="ea175271-4ca6-40e2-bd65-24231a0c0b64"/>
+					<textFieldExpression><![CDATA[$P{periode}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="114" y="202" width="100" height="18" uuid="baf4e2d1-8d5c-46ca-b08c-635e964a7aa1"/>
+					<textFieldExpression><![CDATA[$P{montant}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageHeader>
+</jasperReport>

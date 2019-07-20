@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RevenueEditDlg" widgetVar="RevenueEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRevenueTitle}">
+            <h:form id="RevenueEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{revenueController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditRevenueLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{revenueController.selected.id}" title="#{bundle.EditRevenueTitle_id}" required="true" requiredMessage="#{bundle.EditRevenueRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditRevenueLabel_montant}" for="montant" />
+                        <p:inputText id="montant" value="#{revenueController.selected.montant}" title="#{bundle.EditRevenueTitle_montant}" />
+                        <p:outputLabel value="#{bundle.EditRevenueLabel_date}" for="date" />
+                        <p:calendar id="date" pattern="MM/dd/yyyy" value="#{revenueController.selected.date}" title="#{bundle.EditRevenueTitle_date}" required="true" requiredMessage="#{bundle.EditRevenueRequiredMessage_date}" showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditRevenueLabel_appartementId}" for="appartementId" />
+                        <p:selectOneMenu id="appartementId" value="#{revenueController.selected.appartementId}" required="true" requiredMessage="#{bundle.EditRevenueRequiredMessage_appartementId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{appartementController.itemsAvailableSelectOne}"
+                                           var="appartementIdItem"
+                                           itemValue="#{appartementIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditRevenueLabel_periodeId}" for="periodeId" />
+                        <p:selectOneMenu id="periodeId" value="#{revenueController.selected.periodeId}" required="true" requiredMessage="#{bundle.EditRevenueRequiredMessage_periodeId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{periodeController.itemsAvailableSelectOne}"
+                                           var="periodeIdItem"
+                                           itemValue="#{periodeIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{revenueController.update}" value="#{bundle.Save}" update="display,:RevenueListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RevenueEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="RevenueEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

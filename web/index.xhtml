@@ -1,0 +1,117 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <f:metadata>
+        <f:event type="preRenderView" listener="#{loginController.permission()}" />
+    </f:metadata>
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+    </h:head>
+    <h:body style="background-image: url('resources/img/buildings.jpg'); " >
+
+        <br />
+        <!--<h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />-->
+        <br />
+        <!--        <h:commandLink action="/appartement/List">
+                    <p:graphicImage id="city" value="/img/images.jpg" width="280" height="190"> </p:graphicImage>
+        
+                </h:commandLink>-->
+        <table cellspacing="20px" style="position: absolute; left: 35%;top: 15%">
+            <tr>
+                <td>
+                    <h:link outcome="/appartement/List"  >
+                        <p:graphicImage library="img" name="building.png" height="70" width="80"  />
+                    </h:link>
+                    <br/>
+                    <h:outputText value="Appartements"/>
+                </td>
+                <td>
+                    <h:link outcome="/appartementhabitant/List" >
+                        <p:graphicImage library="img" name="building.png" height="80" width="80" />
+                    </h:link>
+
+                </td>
+                <td>
+                    <h:link outcome="/categorie/List" value="">
+                        <p:graphicImage library="img" name="maintenance.png"  height="80" width="80" />
+                    </h:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:link outcome="/depense/List" >
+                        <p:graphicImage library="img" name="budget.png" height="80" width="80"/>
+                    </h:link>
+                </td>
+                <td>
+                    <h:link outcome="/employe/List" value="">
+                        <p:graphicImage library="img" name="employee.png" height="80" width="80"/>
+                    </h:link>
+                </td>
+                <td>
+                    <h:link outcome="/employeimmeuble/List" value="">
+                        <p:graphicImage library="img" name="employee.png" height="80" width="80"/>
+                    </h:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:link outcome="/etage/List" value="">
+                        <p:graphicImage library="img" name="building.png" height="80" width="80"></p:graphicImage>
+                    </h:link>
+                </td>
+                <td>
+                    <h:link outcome="/habitant/List" value="">
+                        <p:graphicImage library="img" name="user.png" height="80px" width="80px" />
+                    </h:link>
+                </td>
+                <td>
+                    <h:link outcome="/immeuble/List" value="">
+                        <p:graphicImage library="img" name="appartment.png" height="80px" width="80px"/>
+                    </h:link>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <h:link outcome="/periode/List" value="">
+                        <p:graphicImage library="img" name="period.png" height="80px" width="80px"/>
+                    </h:link>
+                </td>
+                <td>
+                    <h:link outcome="/profil/List" value="">
+                        <p:graphicImage library="img" name="user.png" height="80px" width="80px"/>
+                    </h:link> 
+                </td>
+                <td>
+                    <h:link outcome="/revenue/List" value="">
+                        <p:graphicImage library="img" name="money.png" height="80px" width="80px"/>
+                    </h:link>
+                        
+                </td>
+            </tr>
+        </table>
+
+
+        <br />
+
+        <br />
+
+    </h:body>
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+

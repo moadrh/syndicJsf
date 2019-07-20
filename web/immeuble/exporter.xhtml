@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="immeuble" widgetVar="immeubleDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewImmeubleTitle}">
+            <h:form id="immeubleForm">
+                <p:dataTable id="tbl" var="m" value="#{immeubleController.exporter()}" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PageLinks} {NextPageLink} {Exporters}"
+                             paginator="true" rows="10" style="margin-bottom: 20px">
+                    <f:facet name="{Exporters}" >
+                        <h:commandLink>
+                            <h:outputText value="pdf"/>
+                            <h:graphicImage library="img" name="network.png" width="24"/>
+                            <p:dataExporter type="pdf" target="tbl" fileName="exportData"/>
+                        </h:commandLink>
+                    </f:facet>
+                    <p:column headerText="Appartement">
+                        <f:facet name="header">
+                            <h:outputText value="Num"/>
+                        </f:facet>
+                        <h:outputFormat value="Numero #{m[0]}"/>
+                        
+                    </p:column>
+                    <p:column headerText="Dimension">
+                        <f:facet name="header">
+                            <h:outputText value="Dimension"/>
+                        </f:facet>
+                        <h:outputFormat value="#{m[1]}"/>
+                        
+                    </p:column>
+                    <p:column headerText="Nom">
+                        <f:facet name="header">
+                            <h:outputText value="Nom"/>
+                        </f:facet>
+                        <h:outputFormat value=" #{m[2]}"/>
+                        
+                    </p:column>
+                    <p:column headerText="Préom">
+                        <f:facet name="header">
+                            <h:outputText value="Prenom"/>
+                        </f:facet>
+                        <h:outputFormat value=" #{m[3]}"/>
+                        
+                    </p:column>
+                </p:dataTable>
+                <h3>Export page Date</h3>
+                <h:commandLink>
+                    <f:facet name="header">
+                        
+                    </f:facet>
+                    <h:outputText value="pdf"/>
+                    <h:graphicImage library="img" name="newtwork.png" width="24"/>
+                    <p:dataExporter type="pdf" target="tbl" fileName="exportData" pageOnly="true"/>
+                </h:commandLink>
+
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
+

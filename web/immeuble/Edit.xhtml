@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ImmeubleEditDlg" widgetVar="ImmeubleEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditImmeubleTitle}">
+            <h:form id="ImmeubleEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{immeubleController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditImmeubleLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{immeubleController.selected.id}" title="#{bundle.EditImmeubleTitle_id}" required="true" requiredMessage="#{bundle.EditImmeubleRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditImmeubleLabel_num}" for="num" />
+                        <p:inputText id="num" value="#{immeubleController.selected.num}" title="#{bundle.EditImmeubleTitle_num}" required="true" requiredMessage="#{bundle.EditImmeubleRequiredMessage_num}"/>
+                        <p:outputLabel value="#{bundle.EditImmeubleLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{immeubleController.selected.nom}" title="#{bundle.EditImmeubleTitle_nom}" required="true" requiredMessage="#{bundle.EditImmeubleRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.EditImmeubleLabel_adresse}" for="adresse" />
+                        <p:inputText id="adresse" value="#{immeubleController.selected.adresse}" title="#{bundle.EditImmeubleTitle_adresse}" required="true" requiredMessage="#{bundle.EditImmeubleRequiredMessage_adresse}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{immeubleController.update}" value="#{bundle.Save}" update="display,:ImmeubleListForm:datalist,:growl" oncomplete="handleSubmit(args, 'ImmeubleEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ImmeubleEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

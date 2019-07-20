@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="HabitantCreateDlg" widgetVar="HabitantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateHabitantTitle}">
+            <h:form id="HabitantCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{habitantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateHabitantLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{habitantController.selected.id}" title="#{bundle.CreateHabitantTitle_id}" required="true" requiredMessage="#{bundle.CreateHabitantRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.CreateHabitantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{habitantController.selected.cin}" title="#{bundle.CreateHabitantTitle_cin}" required="true" requiredMessage="#{bundle.CreateHabitantRequiredMessage_cin}"/>
+                        <p:outputLabel value="#{bundle.CreateHabitantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{habitantController.selected.nom}" title="#{bundle.CreateHabitantTitle_nom}" required="true" requiredMessage="#{bundle.CreateHabitantRequiredMessage_nom}"/>
+                        <p:outputLabel value="#{bundle.CreateHabitantLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{habitantController.selected.prenom}" title="#{bundle.CreateHabitantTitle_prenom}" required="true" requiredMessage="#{bundle.CreateHabitantRequiredMessage_prenom}"/>
+                        <p:outputLabel value="#{bundle.CreateHabitantLabel_telephone}" for="telephone" />
+                        <p:inputText id="telephone" value="#{habitantController.selected.telephone}" title="#{bundle.CreateHabitantTitle_telephone}" required="true" requiredMessage="#{bundle.CreateHabitantRequiredMessage_telephone}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{habitantController.create}" value="#{bundle.Save}" update="display,:HabitantListForm:datalist,:growl" oncomplete="handleSubmit(args,'HabitantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="HabitantCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

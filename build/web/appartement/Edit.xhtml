@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="AppartementEditDlg" widgetVar="AppartementEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditAppartementTitle}">
+            <h:form id="AppartementEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{appartementController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditAppartementLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{appartementController.selected.id}" title="#{bundle.EditAppartementTitle_id}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_id}"/>
+                        <p:outputLabel value="#{bundle.EditAppartementLabel_num}" for="num" />
+                        <p:inputText id="num" value="#{appartementController.selected.num}" title="#{bundle.EditAppartementTitle_num}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_num}"/>
+                        <p:outputLabel value="#{bundle.EditAppartementLabel_dimension}" for="dimension" />
+                        <p:inputText id="dimension" value="#{appartementController.selected.dimension}" title="#{bundle.EditAppartementTitle_dimension}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_dimension}"/>
+                        <p:outputLabel value="#{bundle.EditAppartementLabel_etageId}" for="etageId" />
+                        <p:selectOneMenu id="etageId" value="#{appartementController.selected.etageId}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_etageId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etageController.itemsAvailableSelectOne}"
+                                           var="etageIdItem"
+                                           itemValue="#{etageIdItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditAppartementLabel_immeubleId}" for="immeubleId" />
+                        <p:selectOneMenu id="immeubleId" value="#{appartementController.selected.immeubleId}" required="true" requiredMessage="#{bundle.EditAppartementRequiredMessage_immeubleId}">
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{immeubleController.itemsAvailableSelectOne}"
+                                           var="immeubleIdItem"
+                                           itemValue="#{immeubleIdItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{appartementController.update}" value="#{bundle.Save}" update="display,:AppartementListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AppartementEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AppartementEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
